@@ -1,0 +1,402 @@
+#:global
+s=^"=`` =g
+s=([ \(\[\{<])"=$1 `` =g 
+s=^''=`` =g 
+s=([ \(\[\{<])''=$1 `` =g
+s=^``=`` =g 
+s=([ \(\[\{<])``=$1 `` =g
+s/''/ '' /g;
+
+s=\.\.\.= ... =g
+s=[;\@\#\$\%\&]= $& =g
+
+
+#s=([^.])([.])([\]\)\}>\"' ]*)[ 	]*$=$1 $2$3 =g
+s=[?!]= $& =g
+
+
+s=[][(){}<>]= $& =g
+
+s/\(/-LRB-/g
+s/\)/-RRB-/g
+s/\[/-LSB-/g
+s/\]/-RSB-/g
+s/\{/-LCB-/g
+s/\}/-RCB-/g
+
+s=--= -- =g
+
+s=$= =
+s=^= =
+
+s="= '' =g
+
+s= (['`])([^'`])= $1 $2=g
+s=([^'`])([`']) =$1 $2 =g
+
+s='([sSmMdD])([\(?:,|:|\.\) ])= '$1 $2=g
+s='ll([\(?:,|:|\.\) ])= 'll $1=g
+s='re([\(?:,|:|\.\) ])= 're $1=g
+s='ve([\(?:,|:|\.\) ])= 've $1=g
+s=n't([\(?:,|:|\.\) ])= n't $1=g
+s='LL([\(?:,|:|\.\) ])= 'LL $1=g
+s='RE([\(?:,|:|\.\) ])= 'RE $1=g
+s='VE([\(?:,|:|\.\) ])= 'VE $1=g
+s=N'T([\(?:,|:|\.\) ])= N'T $1=g
+s='([sSmMdD])$= '$1=g
+s='ll$= 'll=g
+s='re$= 're=g
+s='ve$= 've=g
+s=n't$= n't=g
+s='LL$= 'LL=g
+s='RE$= 'RE=g
+s='VE$= 'VE=g
+s=N'T$= N'T=g
+
+s= ([Cc])annot = $1an not =g
+s= ([Dd])'ye = $1' ye =g
+s= ([Gg])imme = $1im me =g
+s= ([Gg])onna = $1on na =g
+s= ([Gg])otta = $1ot ta =g
+s= ([Ll])emme = $1em me =g
+s= ([Mm])ore'n = $1ore 'n =g
+s= '([Tt])is = '$1 is =g
+s= '([Tt])was = '$1 was =g
+s= ([Ww])anna = $1an na =g
+s= ([Ww])haddya = $1ha dd ya =g
+s= ([Ww])hatcha = $1ha t cha =g
+
+
+s=(\S)/(\S)=$1\\/$2=g
+
+
+# clean out extra spaces
+s= += =g
+s=^ +==g
+#:token
+#3/4
+^\S+\\\/\S+$
+#time
+^[\d,\.]+:[\d,\.]+$
+#15th-...
+^\d+(th|st|nd|rd)(-\S+)?$
+#1980s
+^\d+s$
+#23-year-old
+^\d+-\S+$
+#bla-bla-3
+^\S+-[\d\.,]+$
+#$3,000.03
+#^[\S]?\d+([,\.]\d)*\d*
+(^|\s+)(([1-9])([0-9]{0,2}))(\.[0-9]{1,3}){3,3}(?!\S)
+^((\.)([0-9]+)|([0-9]+)(,[0-9]{3,3})*(\.[0-9]+)?)
+^http(s?)://\S+
+^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+
+#...
+\.+
+#:punctuation
+#maybe remove the :
+(?:,|:|\.)
+#(?:'t|'nt|'s|'re|'ll|'m|'d|'ve|\.|\?|!|,|;|:|\$|\\|/|\"|\'|`|\)|\(|\*|%|\^|\}|\{|&amp;|&lt;|&gt;|\[|\]|\=)
+#:replacement
+#:abbreviation
+A.
+A.B.
+A.D.
+A.G.
+A.H.
+A.I.
+A.K.
+A.M.
+A.S.
+Ala.
+Alt.
+Alta.
+Apr.
+Art.
+Arts.
+Assn.
+Aug.
+Ave.
+B.
+B.A.
+B.C.
+B.E.
+B.N.
+B.O.T.
+B.Sc.
+B.V.
+Bancorp.
+Bankcorp.
+Bhd.
+C.
+C.L.C.
+Capt.
+Cf.
+Ch.
+Chap.
+Chaps.
+Cia.
+Cie.
+Cir.
+Cit.
+Co.
+Col.
+Coll.
+Colo.
+Cos.
+D.
+D.C.
+D.M.
+Dec.
+Del.
+Dem.
+Dept.
+Dipl.
+Dist.
+Distr.
+Doc.
+Dr.
+E.
+E.U.
+E.V.
+E.g.
+ETC.
+Elec.
+Ext.
+F.
+Feb.
+Fla.
+Fri.
+G.
+G.A.
+Gen.
+Geol.
+H.
+H.A.
+H.E.
+H.M.
+H.R.
+H.R.H.
+Hon.
+I.
+I.A.
+I.B.
+I.C.
+I.C.J.
+I.R.
+II.A.
+II.C.
+II.D.
+III.A.
+III.C.
+IV.A.
+Ia.
+Ibid.
+Ida.
+Ill.
+Inc.
+Inst.
+J.
+J.D.
+J.L.
+J.S.
+Jan.
+Jr.
+Jul.
+Jun.
+K.
+K.D.
+K.P.
+K.S.C.
+Kft.
+L.
+L.K.
+LL.B.
+LL.M.
+La.
+Lt.
+Ltd.
+M.
+M.A.
+M.C.
+M.E.
+M.H.
+M.K.O.
+M.M.S.
+M.P.
+M.R.
+M.S.
+M.Sc.
+M.T.
+M.V.V.
+MR.
+Maj.
+Mar.
+Md.
+Me.
+Messrs.
+Mfg.
+Mo.
+Mon.
+Mr.
+Mrs.
+Ms.
+N.
+N.B.
+N.O.S.
+N.Y.
+NO.
+Nfld.
+No.
+Nos.
+Nov.
+Nr.
+O.
+O.J.
+O.T.
+Oct.
+Ont.
+Ore.
+P.A.
+P.D.
+P.O.
+P.S.
+PLC.
+Pa.
+Par.
+ParCorp.
+Para.
+Paras.
+Pf.
+Ph.D.
+Pres.
+Prof.
+Prog.
+Pte.
+Pty.
+Q.
+Que.
+R.
+R.A.
+Rec.
+Rep.
+Rev.
+S.
+S.A.
+S.A.K.
+S.C.
+S.D.
+S.L.
+S.S.
+S.p.A.
+SEC.
+Sask.
+Sat.
+Sect.
+Sects.
+Sen.
+Sr.
+St.
+Stat.
+Str.
+Sun.
+Supp.
+T.
+T.W.
+Thurs.
+Tues.
+U.
+U.K.
+U.N.
+U.P.
+U.S.
+U.S.A.
+U.S.C.
+Univ.
+Ur.
+V.
+VI.A.
+VI.B.
+Va.
+Vol.
+Vols.
+Vt.
+W.
+W.J.
+W.L.L.
+Wed.
+Wis.
+X.
+Y.
+Z.
+Z.H.
+a.i.
+a.k.a.
+a.m.
+approx. 
+art.
+arts.
+ave.
+c.i.f.
+cetera.
+cf.
+ch.
+chap.
+chaps.
+cit.
+conv.
+doc.
+e.V.
+e.g.
+ed.
+eds.
+end.
+esp.
+et.
+etc.
+ext.
+ff.
+hr.
+i.e.
+ie.
+ii.
+iii.
+lbs.
+loc.
+mg.
+mill.
+min.
+nos.
+op.
+p.
+p.m.
+par.
+para.
+paras.
+pct.
+pds.
+pg.
+pp.
+pts.
+rev.
+sect.
+sects.
+seq.
+sq.
+ss.
+stg.
+str.
+subpara.
+subsect.
+tel.
+tray.
+u.n.
+u.s.
+u.s.a.
+v.
+viz.
+vol.
+vols.
+vs.
+yr.
