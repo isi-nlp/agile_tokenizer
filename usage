@@ -1,0 +1,1 @@
+./gale-eng-tok.sh < demo.in > demo.tok
